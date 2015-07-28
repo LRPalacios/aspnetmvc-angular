@@ -9,7 +9,7 @@ namespace aspnetmvc_angular.Models.Data
 {
     public class RegistrationContext:DbContext
     {
-        public DbSet<Course> Coruses { get; set; }
+        public DbSet<Course> Courses { get; set; }
 
         public DbSet<Instructor> Instructors { get; set; }
 
