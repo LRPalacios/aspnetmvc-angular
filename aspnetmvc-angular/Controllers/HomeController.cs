@@ -1,4 +1,6 @@
 ﻿using aspnetmvc_angular.Models.Data;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +21,11 @@ namespace aspnetmvc_angular.Controllers
         public ActionResult Index()
         {
             var courses = _db.Courses.ToList();
-            return View(courses);
+            var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
+            var serializedCourses = JsonConvert.SerializeObject(courses, Formatting.None, settings);
+            return View("Index", "",  serializedCourses);
         }
-
+    
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

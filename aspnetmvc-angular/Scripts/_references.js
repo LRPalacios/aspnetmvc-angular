@@ -1,4 +1,6 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="../app/app.js" />
+/// <reference path="../app/coursesctrl.js" />
 /// <reference path="angular.min.js" />
 /// <reference path="angular-mocks.js" />
 /// <reference path="bootstrap.min.js" />

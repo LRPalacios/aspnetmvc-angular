@@ -1,28 +1,49 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@model string
 
-@model string
+<div ng-app="app">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Testing boostrap data from mvc to angular</h3>
+        </div>
+    </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>Course</th>
-                    <th>Course Name</th>
-                    <th>Instructor</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-
-                </tr>
-            </tbody>
-        </table>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover" ng-controller="coursesCtrl">
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Course Name</th>
+                        <th>Instructor</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="course in courses">
+                    <tr>
+                        <td>{{course.number}}</td>
+                        <td>{{course.name}}</td>
+                        <td>{{course.instructor}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
-
 @section scripts{
-<script src="~/Scripts/angular.js"></script>
-    }
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/app/app.js"></script>
+    <script type="text/javascript">
+        (function(){
+            "use strict";
+            angular.module("app")
+            .factory("bootstrapedData", function() {
+                var courses = @Html.Raw(Model);
+                console.log(courses);
+                return {
+                    courses: courses
+                };
+            });
+        }());
+    </script>
+    <script src="~/app/coursesCtrl.js"></script>
+
+}
